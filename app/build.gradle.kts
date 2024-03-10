@@ -33,6 +33,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -69,8 +70,15 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+
+    //Hilt
+    val hilVersion = "2.44"
+    val hiltNav = "1.2.0"
+    implementation("com.google.dagger:hilt-android:$hilVersion")
+    kapt("com.google.dagger:hilt-compiler:$hilVersion")
+    implementation("androidx.hilt:hilt-navigation-fragment:$hiltNav")
+    implementation("androidx.hilt:hilt-navigation-compose:$hiltNav")
+
 
     //Compose Navigation
     val navV = "2.7.7"
@@ -82,6 +90,9 @@ dependencies {
     kapt("androidx.room:room-compiler:$roomV")
     implementation("androidx.room:room-ktx:$roomV")
     annotationProcessor("androidx.room:room-compiler:$roomV")
+
+    //Desugaring
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
 
 kapt {
