@@ -8,9 +8,10 @@ import java.time.LocalDate
 
 @Entity
 data class WorkoutLogEntity(
-    @PrimaryKey(autoGenerate = false)
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val workoutLogId: Int? = null,
     val bodyWeight: Double,
-    val date: Long
-    //val workout: Workout //TODO: Relacionar tablas
+    val date: Long,
+    val workoutId: String,
+    val routineId: String
 )

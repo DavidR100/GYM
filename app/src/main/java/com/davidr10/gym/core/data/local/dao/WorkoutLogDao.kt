@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WorkoutLogDao {
 
-    @Query("Select * From WorkoutLogEntity WHERE id = :id")
-    fun getWorkoutLogById(id: String): WorkoutLogEntity
+    @Query("Select * From WorkoutLogEntity WHERE workoutLogId = :workoutLogId")
+    fun getWorkoutLogById(workoutLogId: String): WorkoutLogEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createWorkoutLogById(entity: WorkoutLogEntity)

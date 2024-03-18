@@ -7,7 +7,6 @@ import com.davidr10.gym.core.domain.model.Workout
 @Entity
 data class RoutineEntity(
     @PrimaryKey(autoGenerate = false)
-    val id: String,
-    val name: String,
-    //val workout: List<Workout> //TODO: Relacionar tablas
+    val routineId: String,
+    val name: String
 )

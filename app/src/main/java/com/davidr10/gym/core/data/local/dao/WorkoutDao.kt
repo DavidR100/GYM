@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WorkoutDao {
 
-    @Query("Select * From WorkoutEntity WHERE id = :id")
-    fun getWorkoutById(id: String): WorkoutEntity
+    @Query("Select * From WorkoutEntity WHERE workuotId = :workuotId")
+    fun getWorkoutById(workuotId: String): WorkoutEntity
 }

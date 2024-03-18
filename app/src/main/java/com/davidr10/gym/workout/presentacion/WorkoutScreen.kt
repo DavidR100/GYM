@@ -1,7 +1,9 @@
-package com.davidr10.gym.workout
+package com.davidr10.gym.workout.presentacion
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -18,13 +20,15 @@ fun WorkoutScreen(
 ){
     val state = viewModel.state
     Column(modifier = Modifier.fillMaxSize()) {
-        TextField(value = state.weigth, onValueChange = {
-            viewModel.onEvent(WorkoutEvent.ChangeWeight(it))
-        },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-            maxLines = 1
-        )
-        
-        Text(text = "${state.today}")
+        Row(modifier = Modifier.fillMaxWidth()) {
+            TextField(value = state.weigth, onValueChange = {
+                viewModel.onEvent(WorkoutEvent.ChangeWeight(it))
+            },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                maxLines = 1
+            )
+
+            Text(text = "${state.today}")
+        }
     }
 }

@@ -6,10 +6,10 @@ import com.davidr10.gym.core.domain.model.Exercise
 import com.davidr10.gym.core.domain.model.Workout
 
 @Entity
-data class WorkoutEntity(
-    @PrimaryKey(autoGenerate = false)
-    val workuotId: String,
-    val name: String,
-    val routineId: String
-    //val exercises: List<Exercise> //TODO: Relacionar tablas
+data class WorkoutSetEntity(
+    @PrimaryKey(autoGenerate = true)
+    val workuotSetId: Int? = null,
+    val weight: Double,
+    val repetitions: Int,
+    val exerciseId: String
 )

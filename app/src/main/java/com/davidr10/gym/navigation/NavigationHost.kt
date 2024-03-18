@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.davidr10.gym.home.presentacion.HomeScreen
-import com.davidr10.gym.workout.WorkoutScreen
+import com.davidr10.gym.workout.presentacion.WorkoutScreen
 
 @Composable
 fun NavigationHost(
@@ -16,12 +16,12 @@ fun NavigationHost(
     NavHost(navController = navHostController, startDestination = NavigationRoute.Home.route) {
         composable(NavigationRoute.Home.route){
             HomeScreen{
-                navHostController.navigate(NavigationRoute.Workout.route + "workoutid=$it")
+                navHostController.navigate(NavigationRoute.Workout.route + "routineId=$it")
             }
         }
-        composable(NavigationRoute.Workout.route + "workoutid={workoutid}",
+        composable(NavigationRoute.Workout.route + "routineId={routineId}",
             arguments = listOf(
-                navArgument("workoutid"){
+                navArgument("routineId"){
                     this.type = NavType.StringType
                     nullable = true
                     defaultValue = null
