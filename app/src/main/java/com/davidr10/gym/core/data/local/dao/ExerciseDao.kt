@@ -4,19 +4,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.davidr10.gym.core.data.local.entities.ExerciseEntity
 import com.davidr10.gym.core.data.local.entities.RoutineEntity
 import com.davidr10.gym.core.data.local.entities.WorkoutEntity
+import com.davidr10.gym.core.data.local.entities.WorkoutSetEntity
 import com.davidr10.gym.core.domain.model.Workout
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface WorkoutDao {
+interface ExerciseDao {
 
-    @Query("Select * From WorkoutEntity WHERE workuotId = :routineId")
-    fun getWorkoutById(routineId: String): WorkoutEntity
-
-    @Query("Select workuotId From WorkoutEntity WHERE routineId = :routineId")
-    fun getWorkoutsByRoutineId(routineId: String): List<String>
+    @Query("Select * From ExerciseEntity WHERE workoutId = :workoutId")
+    fun getExercisesByWorkoutId(workoutId: String): ExerciseEntity
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWorkout(workoutEntity: WorkoutEntity)
+    suspend fun insertExercise(exercise: ExerciseEntity)
 }

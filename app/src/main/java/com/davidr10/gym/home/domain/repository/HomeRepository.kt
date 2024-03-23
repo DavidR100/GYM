@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
     fun getAllRoutine(): Flow<List<Routine>>
+    suspend fun insertRoutine(routine: Routine)
 }

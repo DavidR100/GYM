@@ -2,9 +2,11 @@ package com.davidr10.gym.core.di
 
 import android.content.Context
 import androidx.room.Room
+import com.davidr10.gym.core.data.local.dao.ExerciseDao
 import com.davidr10.gym.core.data.local.dao.RoutineDao
 import com.davidr10.gym.core.data.local.dao.WorkoutDao
 import com.davidr10.gym.core.data.local.dao.WorkoutLogDao
+import com.davidr10.gym.core.data.local.dao.WorkoutSetDao
 import com.davidr10.gym.core.data.local.database.WorkoutDatabase
 import dagger.Module
 import dagger.Provides
@@ -35,5 +37,15 @@ object CoreModule {
     @Singleton
     fun provideRoutineDao(workoutDatabase: WorkoutDatabase): RoutineDao {
         return workoutDatabase.routineDao
+    }
+    @Provides
+    @Singleton
+    fun provideWorkoutSetDao(workoutDatabase: WorkoutDatabase): WorkoutSetDao {
+        return workoutDatabase.workoutsetDao
+    }
+    @Provides
+    @Singleton
+    fun provideExerciseDao(workoutDatabase: WorkoutDatabase): ExerciseDao {
+        return workoutDatabase.exerciseDao
     }
 }

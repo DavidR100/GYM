@@ -1,4 +1,4 @@
-package com.davidr10.gym.workout.data.mapper
+package com.davidr10.gym.core.data.local.mapper
 
 import com.davidr10.gym.core.data.local.entities.ExerciseEntity
 import com.davidr10.gym.core.data.local.entities.WorkoutEntity
@@ -25,7 +25,32 @@ fun ExerciseEntity.toDomain(sets: List<WorkoutSet>): Exercise {
 
 fun WorkoutSetEntity.toDomain(): WorkoutSet {
     return WorkoutSet(
+        id = workuotSetId!!,
         weight = weight,
         repetitions = repetitions
+    )
+}
+fun Workout.toEntity(routineId: String):WorkoutEntity {
+    return WorkoutEntity(
+        workuotId = id,
+        name = name,
+        routineId = routineId
+    )
+}
+
+fun Exercise.toEntity(workoutId: String): ExerciseEntity {
+    return ExerciseEntity(
+        exerciseId = id,
+        name = name,
+        workoutId = workoutId
+    )
+}
+
+fun WorkoutSet.toEntity(exerciseId: String): WorkoutSetEntity {
+    return WorkoutSetEntity(
+        workuotSetId = id,
+        weight = weight,
+        repetitions = repetitions,
+        exerciseId = exerciseId
     )
 }

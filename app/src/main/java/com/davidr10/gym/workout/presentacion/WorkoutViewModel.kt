@@ -23,6 +23,7 @@ class WorkoutViewModel @Inject constructor(
         val routineId = savedStateHandle.get<String>("routineId") ?: ""
         viewModelScope.launch {
             val workout = getNextWorkouUseCase(routineId)
+            println(workout)
             println()
         }
     }
