@@ -33,87 +33,115 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-            /*val setsA = listOf(
-                WorkoutSet(
-                    id = 1,
-                    weight = 10.0,
-                    repetitions = 15
-                ),
-                WorkoutSet(
-                    id = 2,
-                    weight = 10.0,
-                    repetitions = 30
-                )
+        /*val setsA1 = listOf(
+            WorkoutSet(
+                id = 1,
+                weight = 12.0,
+                repetitions = 13
+            ),
+            WorkoutSet(
+                id = 2,
+                weight = 14.0,
+                repetitions = 15
             )
+        )
 
-            val exercisesA = listOf(
-                Exercise(
-                    id = "exa1",
-                    "Bench Press",
-                    sets = setsA
-                ),
+    val setsA2 = listOf(
+        WorkoutSet(
+            id = 3,
+            weight = 16.0,
+            repetitions = 17
+        ),
+        WorkoutSet(
+            id = 4,
+            weight = 18.0,
+            repetitions = 19
+        )
+    )
 
-                Exercise(
-                    id = "exa2",
-                    "Deadlift",
-                    sets = setsA
-                )
+        val exercisesA = listOf(
+            Exercise(
+                id = "exa1",
+                "Bench Press",
+                sets = setsA1
+            ),
+
+            Exercise(
+                id = "exa2",
+                "Deadlift",
+                sets = setsA2
             )
+        )
 
-            val setsB = listOf(
-                WorkoutSet(
-                    id = 1,
-                    weight = 10.0,
-                    repetitions = 15
-                ),
-                WorkoutSet(
-                    id = 2,
-                    weight = 10.0,
-                    repetitions = 30
-                )
+        val setsB1 = listOf(
+            WorkoutSet(
+                id = 5,
+                weight = 20.0,
+                repetitions = 21
+            ),
+            WorkoutSet(
+                id = 6,
+                weight = 22.0,
+                repetitions = 23
             )
+        )
 
-            val exercisesB = listOf(
-                Exercise(
-                    id = "exb1",
-                    "Squats",
-                    sets = setsB
-                ),
+    val setsB2 = listOf(
+        WorkoutSet(
+            id = 7,
+            weight = 24.0,
+            repetitions = 25
+        ),
+        WorkoutSet(
+            id = 8,
+            weight = 26.0,
+            repetitions = 27
+        )
+    )
 
-                Exercise(
-                    id = "exb2",
-                    "Deadlift",
-                    sets = setsB
-                )
+
+        val exercisesB = listOf(
+            Exercise(
+                id = "exb1",
+                "Squats",
+                sets = setsB1
+            ),
+
+            Exercise(
+                id = "exb2",
+                "Deadlift",
+                sets = setsB2
             )
+        )
 
-            val workouts = listOf(
-                Workout(
-                    "workouta",
-                    "Workout A",
-                    exercisesA
-                ),
-                Workout(
-                    "workoutb",
-                    "Workout B",
-                    exercisesB
-                )
+        val workouts = listOf(
+            Workout(
+                "workouta",
+                "Workout A",
+                exercisesA
+            ),
+            Workout(
+                "workoutb",
+                "Workout B",
+                exercisesB
             )
+        )
 
-            val routine = Routine(
-                "routine1",
-                "3x Workout BASE DE DATOS",
-                workouts = workouts
-            )
-            viewModelScope.launch {
-                try {
-                    insertRoutinesUseCase(routine)
-                } catch (e: Exception) {
-                    println(e)
-                    println()
-                }
+        val routine = Routine(
+            "routine1",
+            "3x Workout BASE DE DATOS",
+            workouts = workouts
+        )
+        viewModelScope.launch {
+            try {
+                insertRoutinesUseCase(routine)
+            } catch (e: Exception) {
+                println(e)
                 println()
-            }*/
+            }
+            println()
+        }*/
+
 
     }
 }

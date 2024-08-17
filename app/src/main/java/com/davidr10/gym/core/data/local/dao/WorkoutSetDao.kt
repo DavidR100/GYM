@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 interface WorkoutSetDao {
 
     @Query("Select * From WorkoutSetEntity WHERE exerciseId = :exerciseId")
-    fun getWorkoutSetsByExerciseId(exerciseId: String): WorkoutSetEntity
+    suspend fun getWorkoutSetsByExerciseId(exerciseId: String): List<WorkoutSetEntity>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWorkoutSet(set: WorkoutSetEntity)
 }

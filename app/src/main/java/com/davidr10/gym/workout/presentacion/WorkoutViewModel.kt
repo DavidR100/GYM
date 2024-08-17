@@ -6,7 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.davidr10.gym.workout.domain.usecase.GetNextWorkouUseCase
+import com.davidr10.gym.workout.domain.usecase.CreateWorkoutUseCase
+import com.davidr10.gym.workout.domain.usecase.GetNextWorkouIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class WorkoutViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val getNextWorkouUseCase: GetNextWorkouUseCase
+    private val getNextWorkouIdUseCase: GetNextWorkouIdUseCase,
+    private val createWorkoutUseCase: CreateWorkoutUseCase
 ): ViewModel() {
     var state by mutableStateOf(WorkoutState())
         private set
@@ -22,7 +24,8 @@ class WorkoutViewModel @Inject constructor(
     init {
         val routineId = savedStateHandle.get<String>("routineId") ?: ""
         viewModelScope.launch {
-            val workout = getNextWorkouUseCase(routineId)
+            val workoutId = getNextWorkouIdUseCase(routineId)
+            val workout = createWorkoutUseCase(workoutId)
             println(workout)
             println()
         }
