@@ -8,9 +8,7 @@ import java.util.UUID
 
 class CreateWorkoutUseCase(private val repository: WorkoutRepository) {
     suspend operator fun invoke(workoutId: String): Workout {
-            val workout = repository.getWorkoutById(workoutId)
-            val workoutLogWorkout = repository.getLastWorkoutLogWorkout(workoutId)
-            return  workoutLogWorkout?.copy(id = UUID.randomUUID().toString())
-                ?: workout.copy(id = UUID.randomUUID().toString())
+        val workoutLogWorkout = repository.getLastWorkoutLogWorkout(workoutId)
+        return workoutLogWorkout ?: repository.getWorkoutById(workoutId)
     }
 }

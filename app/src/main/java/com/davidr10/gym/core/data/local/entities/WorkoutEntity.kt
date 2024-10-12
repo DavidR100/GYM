@@ -10,6 +10,7 @@ data class WorkoutEntity(
     @PrimaryKey(autoGenerate = false)
     val workuotId: String,
     val name: String,
-    val routineId: String
+    val routineId: String,
+    val creationTime: Long
     //val exercises: List<Exercise> //TODO: Relacionar tablas
 )

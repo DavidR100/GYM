@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -28,7 +29,10 @@ fun WorkoutScreen(
                 maxLines = 1
             )
 
-            Text(text = "${state.today}")
+            Text(text = "${state.date}")
+        }
+        Button(onClick = {viewModel.onEvent(WorkoutEvent.FinishWorkout)}) {
+            Text(text = "Finish Workout!")
         }
     }
 }

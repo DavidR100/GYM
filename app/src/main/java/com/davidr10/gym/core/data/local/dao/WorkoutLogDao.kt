@@ -18,7 +18,7 @@ interface WorkoutLogDao {
     suspend fun getWorkoutLogById(workoutLogId: String): WorkoutLogEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun createWorkoutLogById(entity: WorkoutLogEntity)
+    suspend fun createWorkoutLog(entity: WorkoutLogEntity)
 
     @Query("Select * From WorkoutLogEntity WHERE routineId = :id ORDER BY date DESC LIMIT 1")
     suspend fun getLastWorkoutLogInRoutine(id: String): WorkoutLogEntity?
@@ -28,4 +28,7 @@ interface WorkoutLogDao {
 
     @Delete
     suspend fun deleteWorkoutLogById(entity: WorkoutLogEntity)
+
+    @Query("Select Count(workoutLogId) From WorkoutLogEntity WHERE routineId = :id")
+    suspend fun countAllWorkoutLogs(id: String): Int
 }

@@ -1,4 +1,4 @@
-package com.davidr10.gym.core.data.local.mapper
+package com.davidr10.gym.core.data.mapper
 
 import com.davidr10.gym.core.data.local.entities.RoutineEntity
 import com.davidr10.gym.core.domain.model.Routine

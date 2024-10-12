@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-        /*val setsA1 = listOf(
+        val setsA1 = listOf(
             WorkoutSet(
                 id = 1,
                 weight = 12.0,
@@ -140,7 +140,7 @@ class HomeViewModel @Inject constructor(
                 println()
             }
             println()
-        }*/
+        }
 
 
     }

@@ -8,6 +8,7 @@ import com.davidr10.gym.core.data.local.dao.WorkoutSetDao
 import com.davidr10.gym.workout.data.repository.WorkoutRepositoryImpl
 import com.davidr10.gym.workout.domain.repository.WorkoutRepository
 import com.davidr10.gym.workout.domain.usecase.CreateWorkoutUseCase
+import com.davidr10.gym.workout.domain.usecase.FinishWorkoutUseCase
 import com.davidr10.gym.workout.domain.usecase.GetNextWorkouIdUseCase
 import dagger.Module
 import dagger.Provides
@@ -42,4 +43,12 @@ object WorkoutModule {
     fun provideCreateWorkoutCase(repository: WorkoutRepository): CreateWorkoutUseCase {
         return CreateWorkoutUseCase(repository)
     }
+
+    @Provides
+    @Singleton
+    fun provideFinishWorkout(repository: WorkoutRepository): FinishWorkoutUseCase {
+        return FinishWorkoutUseCase(repository)
+    }
+
+
 }

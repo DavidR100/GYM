@@ -3,6 +3,7 @@ package com.davidr10.gym.home.di
 import com.davidr10.gym.core.data.local.dao.ExerciseDao
 import com.davidr10.gym.core.data.local.dao.RoutineDao
 import com.davidr10.gym.core.data.local.dao.WorkoutDao
+import com.davidr10.gym.core.data.local.dao.WorkoutLogDao
 import com.davidr10.gym.core.data.local.dao.WorkoutSetDao
 import com.davidr10.gym.home.data.repository.HomeRepositoryImpl
 import com.davidr10.gym.home.domain.repository.HomeRepository
@@ -24,9 +25,10 @@ object HomeModule {
         routineDao: RoutineDao,
         workoutSetDao: WorkoutSetDao,
         workoutDao: WorkoutDao,
-        exerciseDao: ExerciseDao
+        exerciseDao: ExerciseDao,
+        workoutLogDao: WorkoutLogDao
     ): HomeRepository {
-        return HomeRepositoryImpl(routineDao,workoutDao, exerciseDao, workoutSetDao)
+        return HomeRepositoryImpl(routineDao,workoutDao, exerciseDao, workoutSetDao,workoutLogDao)
     }
     @Provides
     @Singleton
