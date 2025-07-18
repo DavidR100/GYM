@@ -9,7 +9,7 @@ import com.davidr10.gym.core.data.local.entities.WorkoutSetEntity
 data class WorkoutWithExercises(
     @Embedded val workoutEntity: WorkoutEntity,
     @Relation(
-        parentColumn = "workuotId",
+        parentColumn = "workoutId",
         entityColumn = "workoutId",
         entity = ExerciseEntity::class
     )

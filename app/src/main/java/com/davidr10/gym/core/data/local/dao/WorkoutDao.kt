@@ -15,10 +15,10 @@ import kotlinx.coroutines.flow.Flow
 interface WorkoutDao {
 
     @Transaction
-    @Query("Select * From WorkoutEntity WHERE workuotId = :routineId")
+    @Query("Select * From WorkoutEntity WHERE workoutId = :routineId")
     suspend fun getWorkoutById(routineId: String): WorkoutWithExercises
 
-    @Query("Select workuotId From WorkoutEntity WHERE routineId = :routineId ORDER BY creationTime ASC")
+    @Query("Select workoutId From WorkoutEntity WHERE routineId = :routineId ORDER BY creationTime ASC")
     suspend fun getWorkoutsByRoutineId(routineId: String): List<String>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWorkout(workoutEntity: WorkoutEntity)

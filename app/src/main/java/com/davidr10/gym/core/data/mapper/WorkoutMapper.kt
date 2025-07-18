@@ -16,7 +16,7 @@ import java.time.LocalDateTime
 
 fun WorkoutEntity.toDomain(exercise: List<Exercise>): Workout {
     return Workout(
-        id = workuotId,
+        id = workoutId,
         name = name,
         exercises = exercise
     )
@@ -40,7 +40,7 @@ fun WorkoutSetEntity.toDomain(): WorkoutSet {
 
 fun Workout.toEntity(routineId: String): WorkoutEntity {
     return WorkoutEntity(
-        workuotId = id,
+        workoutId = id,
         name = name,
         routineId = routineId,
         creationTime = LocalDateTime.now().toZonedDateTime().toTimeStamp()
@@ -85,7 +85,7 @@ fun ExerciseWithSets.toDomain(): Exercise {
 
 fun WorkoutWithExercises.toDomain(): Workout {
     return Workout(
-        id = workoutEntity.workuotId,
+        id = workoutEntity.workoutId,
         name = workoutEntity.name,
         exercises = exercises.map { it.toDomain() }
     )

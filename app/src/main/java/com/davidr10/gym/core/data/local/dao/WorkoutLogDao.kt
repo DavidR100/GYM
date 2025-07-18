@@ -5,9 +5,11 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.davidr10.gym.core.data.local.entities.RoutineEntity
 import com.davidr10.gym.core.data.local.entities.WorkoutEntity
 import com.davidr10.gym.core.data.local.entities.WorkoutLogEntity
+import com.davidr10.gym.core.data.local.entities.relation.WorkoutLogWithWorkout
 import com.davidr10.gym.core.domain.model.Workout
 import kotlinx.coroutines.flow.Flow
 
@@ -23,8 +25,9 @@ interface WorkoutLogDao {
     @Query("Select * From WorkoutLogEntity WHERE routineId = :id ORDER BY date DESC LIMIT 1")
     suspend fun getLastWorkoutLogInRoutine(id: String): WorkoutLogEntity?
 
+    @Transaction
     @Query("Select * From WorkoutLogEntity WHERE routineId = :id ORDER BY date DESC LIMIT 1")
-    suspend fun getLastWorkout(id: String): WorkoutLogEntity?
+    suspend fun getLastWorkout(id: String): WorkoutLogWithWorkout?
 
     @Delete
     suspend fun deleteWorkoutLogById(entity: WorkoutLogEntity)
