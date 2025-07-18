@@ -20,19 +20,19 @@ class HomeRepositoryImpl(
     private val exerciseDao: ExerciseDao,
     private val workoutSetDao: WorkoutSetDao,
     private val workoutLogDao: WorkoutLogDao
-): HomeRepository {
+) : HomeRepository {
     override fun getAllRoutine(): Flow<List<Routine>> {
         return routineDao.getAllRoutines().map { it.map { it.toDomain() } }
     }
 
     override suspend fun insertRoutine(routine: Routine) {
         routineDao.insertRoutine(routine = routine.toEntity())
-        routine.workouts.forEach{ workout ->
+        routine.workouts.forEach { workout ->
             workoutDao.insertWorkout(workout.toEntity(routine.id))
             workout.exercises.forEach { exercise ->
-                exerciseDao.insertExercise(exercise.toEntity(workout.id))
-                exercise.sets.forEach { set->
-                    workoutSetDao.insertWorkoutSet(set.toEntity(exercise.id))
+                val exerciseId = exerciseDao.insertExercise(exercise.toEntity(workout.id))
+                exercise.sets.forEach { set ->
+                    workoutSetDao.insertWorkoutSet(set.toEntity(exerciseId))
                 }
             }
         }

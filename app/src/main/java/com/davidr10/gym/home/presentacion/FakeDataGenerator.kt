@@ -11,7 +11,7 @@ object FakeDataGenerator {
         return Routine(
             id = UUID.randomUUID().toString(),
             name = "Full Body Workout",
-            workouts = listOf(createWorkoutA(), createWorkoutB() )
+            workouts = listOf(createWorkoutA(), createWorkoutB())
         )
     }
 
@@ -64,43 +64,36 @@ object FakeDataGenerator {
 
         val exercisesA = listOf(
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Squats",
+                name = "Squats",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Bench Press",
+                name = "Bench Press",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Wighted Chinup",
+                name = "Wighted Chinup",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Machine Lateral Raises",
+                name = "Machine Lateral Raises",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Diverging Low Row",
+                name = "Diverging Low Row",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Tricep Pushdowns",
+                name = "Tricep Pushdowns",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "MIncline Dumbbell Bicep Curl",
+                name = "Incline Dumbbell Bicep Curl",
                 sets = isolatedSets
             )
         )
 
-        return  exercisesA
+        return exercisesA
     }
 
     private fun createExercisesB(): List<Exercise> {
@@ -153,45 +146,39 @@ object FakeDataGenerator {
             )
         )
 
+
         val exercisesB = listOf(
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Squats",
+                name = "Squats",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Overhead Press",
+                name = "Overhead Press",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Wighted Chinup",
+                name = "Wighted Chinup",
                 sets = compoundSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Dumbell Shrugs",
+                name = "Dumbell Shrugs",
                 sets = shrugsSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Pec Dec",
+                name = "Pec Dec",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "Tricep Pushdowns",
+                name = "Tricep Pushdowns",
                 sets = isolatedSets
             ),
             Exercise(
-                id = UUID.randomUUID().toString(),
-                "MIncline Dumbbell Bicep Curl",
+                name = "Incline Dumbbell Bicep Curl",
                 sets = isolatedSets
             )
         )
 
-        return  exercisesB
+        return exercisesB
     }
 
 }

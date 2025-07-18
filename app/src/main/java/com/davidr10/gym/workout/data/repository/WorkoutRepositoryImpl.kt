@@ -26,20 +26,7 @@ class WorkoutRepositoryImpl(
     }
 
     override suspend fun getWorkoutById(id: String): Workout {
-        val exercises = getExercisesForWorkout(id)
-        return workoutDao.getWorkoutById(id).toDomain(exercises)
-    }
-
-    private suspend fun getExercisesForWorkout(workoutId: String): List<Exercise> {
-
-        val exercises = exerciseDao.getExercisesIdsByWorkoutId(workoutId)
-        val fullExercises = mutableListOf<Exercise>()
-        exercises.forEach { exer ->
-            val sets = workoutSetDao.getWorkoutSetsByExerciseId(exer)
-            val exercise = exerciseDao.getExerciseById(exer)
-            fullExercises.add(exercise.toDomain(sets.map { it.toDomain() }))
-        }
-        return fullExercises
+        return workoutDao.getWorkoutById(id).toDomain()
     }
 
     override suspend fun getLastWorkoutLogInRoutine(routineId: String): String? {
@@ -60,17 +47,12 @@ class WorkoutRepositoryImpl(
     override suspend fun saveWorkout(routineId: String, workoutLog: WorkoutLog) {
         val workout = workoutLog.workout.copy(id = UUID.randomUUID().toString())
         val log = workoutLog.copy(workout = workout)
-        workoutLogDao.createWorkoutLog(workoutLog.toEntity(routineId))
+        workoutLogDao.createWorkoutLog(log.toEntity(routineId))
         workoutDao.insertWorkout(workout.toEntity(routineId))
         workout.exercises.forEach { exercise ->
-            val updateExercise =
-                exercise.toEntity(workout.id).copy(exerciseId = UUID.randomUUID().toString())
-            exerciseDao.insertExercise(updateExercise)
+            val exerciseId = exerciseDao.insertExercise(exercise.toEntity(workout.id))
             exercise.sets.forEach { set ->
-                val updateSet = set.toEntity(updateExercise.exerciseId).copy(
-                    workuotSetId = null
-                )
-                workoutSetDao.insertWorkoutSet(updateSet)
+                workoutSetDao.insertWorkoutSet(set.toEntity(exerciseId))
             }
         }
     }

@@ -6,13 +6,15 @@ import com.davidr10.gym.core.data.local.entities.ExerciseEntity
 import com.davidr10.gym.core.data.local.entities.WorkoutEntity
 import com.davidr10.gym.core.data.local.entities.WorkoutLogEntity
 import com.davidr10.gym.core.data.local.entities.WorkoutSetEntity
+import com.davidr10.gym.core.data.local.entities.relation.ExerciseWithSets
+import com.davidr10.gym.core.data.local.entities.relation.WorkoutWithExercises
 import com.davidr10.gym.core.domain.model.Exercise
 import com.davidr10.gym.core.domain.model.Workout
 import com.davidr10.gym.core.domain.model.WorkoutLog
 import com.davidr10.gym.core.domain.model.WorkoutSet
 import java.time.LocalDateTime
 
-fun WorkoutEntity.toDomain(exercise: List<Exercise>):Workout {
+fun WorkoutEntity.toDomain(exercise: List<Exercise>): Workout {
     return Workout(
         id = workuotId,
         name = name,
@@ -35,7 +37,8 @@ fun WorkoutSetEntity.toDomain(): WorkoutSet {
         repetitions = repetitions
     )
 }
-fun Workout.toEntity(routineId: String):WorkoutEntity {
+
+fun Workout.toEntity(routineId: String): WorkoutEntity {
     return WorkoutEntity(
         workuotId = id,
         name = name,
@@ -52,7 +55,7 @@ fun Exercise.toEntity(workoutId: String): ExerciseEntity {
     )
 }
 
-fun WorkoutSet.toEntity(exerciseId: String): WorkoutSetEntity {
+fun WorkoutSet.toEntity(exerciseId: Long): WorkoutSetEntity {
     return WorkoutSetEntity(
         workuotSetId = id,
         weight = weight,
@@ -63,10 +66,27 @@ fun WorkoutSet.toEntity(exerciseId: String): WorkoutSetEntity {
 
 fun WorkoutLog.toEntity(routineId: String): WorkoutLogEntity {
     return WorkoutLogEntity(
-        workoutLogId  = this.id,
+        workoutLogId = this.id,
         bodyWeight = this.bodyWeight,
         date = this.date.toTimeStamp(),
         workoutId = this.workout.id,
         routineId = routineId
+    )
+}
+
+fun ExerciseWithSets.toDomain(): Exercise {
+    return Exercise(
+        id = exercise.exerciseId,
+        name = exercise.name,
+        sets = sets.map { it.toDomain() }
+
+    )
+}
+
+fun WorkoutWithExercises.toDomain(): Workout {
+    return Workout(
+        id = workoutEntity.workuotId,
+        name = workoutEntity.name,
+        exercises = exercises.map { it.toDomain() }
     )
 }

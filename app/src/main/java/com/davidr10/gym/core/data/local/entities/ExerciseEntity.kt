@@ -6,8 +6,8 @@ import com.davidr10.gym.core.domain.model.Workout
 
 @Entity
 data class ExerciseEntity(
-    @PrimaryKey(autoGenerate = false)
-    val exerciseId: String,
+    @PrimaryKey(autoGenerate = true)
+    val exerciseId: Long? = null,
     val name: String,
     val workoutId: String
 )
