@@ -14,7 +14,6 @@ import com.davidr10.gym.workout.domain.repository.WorkoutRepository
 import java.util.UUID
 
 class WorkoutRepositoryImpl(
-    private val routineDao: RoutineDao,
     private val workoutDao: WorkoutDao,
     private val exerciseDao: ExerciseDao,
     private val workoutSetDao: WorkoutSetDao,
@@ -29,11 +28,6 @@ class WorkoutRepositoryImpl(
         return workoutDao.getWorkoutById(id).toDomain()
     }
 
-    override suspend fun getLastWorkoutLogInRoutine(routineId: Long): Long? {
-        val workoutLog = workoutLogDao.getLastWorkoutLogInRoutine(routineId)
-        return workoutLog?.workoutId
-    }
-
     override suspend fun countAllWorkoutLogs(routineId: Long): Int {
         return workoutLogDao.countAllWorkoutLogs(routineId)
     }
@@ -46,13 +40,13 @@ class WorkoutRepositoryImpl(
 
     override suspend fun saveWorkout(routineId: Long, workoutLog: WorkoutLog) {
         val workout = workoutLog.workout.copy(id = null)
-        val log = workoutLog.copy(workout = workout)
-        workoutLogDao.createWorkoutLog(log.toEntity(routineId))
         val workoutId = workoutDao.insertWorkout(workout.toEntity(routineId))
+        val log = workoutLog.copy(workout = workout.copy(id = workoutId))
+        workoutLogDao.createWorkoutLog(log.toEntity(routineId))
         workout.exercises.forEach { exercise ->
-            val exerciseId = exerciseDao.insertExercise(exercise.toEntity(workoutId))
+            val exerciseId = exerciseDao.insertExercise(exercise.copy(id = null).toEntity(workoutId))
             exercise.sets.forEach { set ->
-                workoutSetDao.insertWorkoutSet(set.toEntity(exerciseId))
+                workoutSetDao.insertWorkoutSet(set.copy(id = null).toEntity(exerciseId))
             }
         }
     }

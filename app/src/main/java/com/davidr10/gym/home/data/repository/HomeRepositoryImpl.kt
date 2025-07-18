@@ -18,8 +18,7 @@ class HomeRepositoryImpl(
     private val routineDao: RoutineDao,
     private val workoutDao: WorkoutDao,
     private val exerciseDao: ExerciseDao,
-    private val workoutSetDao: WorkoutSetDao,
-    private val workoutLogDao: WorkoutLogDao
+    private val workoutSetDao: WorkoutSetDao
 ) : HomeRepository {
     override fun getAllRoutine(): Flow<List<Routine>> {
         return routineDao.getAllRoutines().map { it.map { it.toDomain() } }

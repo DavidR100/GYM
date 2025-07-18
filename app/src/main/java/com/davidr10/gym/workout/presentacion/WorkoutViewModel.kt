@@ -6,13 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.davidr10.gym.core.domain.model.WorkoutLog
 import com.davidr10.gym.workout.domain.usecase.CreateWorkoutUseCase
 import com.davidr10.gym.workout.domain.usecase.FinishWorkoutUseCase
 import com.davidr10.gym.workout.domain.usecase.GetNextWorkouIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,16 +34,11 @@ class WorkoutViewModel @Inject constructor(
 
     fun onEvent(event: WorkoutEvent) {
         when (event) {
-            is WorkoutEvent.ChangeWeight -> state = state.copy(weight = event.weight)
+            is WorkoutEvent.ChangeWeight -> state = state.copy(bodyWeight = event.weight)
             WorkoutEvent.FinishWorkout -> {
                 viewModelScope.launch {
-                    val workoutLog = WorkoutLog(
-                        id = null,
-                        bodyWeight = state.weight.toDouble(),
-                        date = state.date,
-                        workout = state.workout
-                    )
-                    finishWorkoutUseCase(state.routineId, workoutLog)
+
+                    finishWorkoutUseCase(state.routineId, state.bodyWeight.toDouble(), state.workout)
                 }
             }
         }

@@ -23,13 +23,12 @@ object WorkoutModule {
     @Provides
     @Singleton
     fun provideWorkoutRepository(
-        routineDao: RoutineDao,
         workoutDao: WorkoutDao,
         exerciseDao: ExerciseDao,
         workoutSetDao: WorkoutSetDao,
         workoutLogDao: WorkoutLogDao
     ): WorkoutRepository {
-        return WorkoutRepositoryImpl(routineDao,workoutDao,exerciseDao,workoutSetDao,workoutLogDao)
+        return WorkoutRepositoryImpl(workoutDao,exerciseDao,workoutSetDao,workoutLogDao)
     }
 
     @Provides

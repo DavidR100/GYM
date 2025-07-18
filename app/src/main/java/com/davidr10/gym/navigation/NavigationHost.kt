@@ -22,9 +22,9 @@ fun NavigationHost(
         composable(NavigationRoute.Workout.route + "routineId={routineId}",
             arguments = listOf(
                 navArgument("routineId"){
-                    this.type = NavType.StringType
-                    nullable = true
-                    defaultValue = null
+                    this.type = NavType.LongType
+                    nullable = false
+                    defaultValue = -1L
                 }
             )
         ){

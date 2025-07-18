@@ -28,7 +28,7 @@ object HomeModule {
         exerciseDao: ExerciseDao,
         workoutLogDao: WorkoutLogDao
     ): HomeRepository {
-        return HomeRepositoryImpl(routineDao,workoutDao, exerciseDao, workoutSetDao,workoutLogDao)
+        return HomeRepositoryImpl(routineDao,workoutDao, exerciseDao, workoutSetDao)
     }
     @Provides
     @Singleton
