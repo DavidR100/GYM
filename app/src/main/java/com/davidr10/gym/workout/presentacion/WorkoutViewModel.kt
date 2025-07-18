@@ -26,7 +26,7 @@ class WorkoutViewModel @Inject constructor(
         private set
 
     init {
-        val routineId = savedStateHandle.get<String>("routineId") ?: ""
+        val routineId = savedStateHandle["routineId"] ?: -1L
         viewModelScope.launch {
             val workoutId = getNextWorkouIdUseCase(routineId)
             val workout = createWorkoutUseCase(workoutId)
@@ -36,12 +36,12 @@ class WorkoutViewModel @Inject constructor(
 
     fun onEvent(event: WorkoutEvent) {
         when (event) {
-            is WorkoutEvent.ChangeWeight -> state = state.copy(weigth = event.weight)
+            is WorkoutEvent.ChangeWeight -> state = state.copy(weight = event.weight)
             WorkoutEvent.FinishWorkout -> {
                 viewModelScope.launch {
                     val workoutLog = WorkoutLog(
                         id = null,
-                        bodyWeight = state.weigth.toDouble(),
+                        bodyWeight = state.weight.toDouble(),
                         date = state.date,
                         workout = state.workout
                     )

@@ -3,7 +3,7 @@ package com.davidr10.gym.workout.domain.usecase
 import com.davidr10.gym.workout.domain.repository.WorkoutRepository
 
 class GetNextWorkouIdUseCase(private val repository: WorkoutRepository) {
-    suspend operator fun invoke(routineId: String): String {
+    suspend operator fun invoke(routineId: Long): Long {
         //1- Obtener todos los workouts de la rutina
         val workouts = repository.getAlltWorkoutsIdByRoutine(routineId)
 

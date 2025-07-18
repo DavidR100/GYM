@@ -9,9 +9,9 @@ import java.time.LocalDate
 @Entity
 data class WorkoutLogEntity(
     @PrimaryKey(autoGenerate = true)
-    val workoutLogId: Int? = null,
+    val workoutLogId: Long? = null,
     val bodyWeight: Double,
     val date: Long,
-    val workoutId: String,
-    val routineId: String
+    val workoutId: Long,
+    val routineId: Long
 )

@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 import java.util.UUID
 
 class CreateWorkoutUseCase(private val repository: WorkoutRepository) {
-    suspend operator fun invoke(workoutId: String): Workout {
+    suspend operator fun invoke(workoutId: Long): Workout {
         val workoutLogWorkout = repository.getLastWorkoutLogWorkout(workoutId)
         return workoutLogWorkout ?: repository.getWorkoutById(workoutId)
     }

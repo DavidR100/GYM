@@ -6,7 +6,7 @@ import com.davidr10.gym.core.domain.model.Workout
 
 @Entity
 data class RoutineEntity(
-    @PrimaryKey(autoGenerate = false)
-    val routineId: String,
+    @PrimaryKey(autoGenerate = true)
+    val routineId: Long? = null,
     val name: String
 )

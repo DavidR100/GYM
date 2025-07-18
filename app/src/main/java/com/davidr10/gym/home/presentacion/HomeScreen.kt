@@ -32,7 +32,7 @@ import com.davidr10.gym.R
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    onWorkoutClick: (String) -> Unit
+    onRoutingClick: (Long) -> Unit
 ) {
     val state = viewModel.state
 
@@ -63,7 +63,7 @@ fun HomeScreen(
                     .fillMaxWidth()
                     .height(120.dp)
                     .clip(RoundedCornerShape(16.dp))
-                    .clickable { onWorkoutClick(it.id) }
+                    .clickable { onRoutingClick(it.id!!) }
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.workout_background),

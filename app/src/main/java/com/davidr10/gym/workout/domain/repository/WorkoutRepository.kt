@@ -4,13 +4,13 @@ import com.davidr10.gym.core.domain.model.Workout
 import com.davidr10.gym.core.domain.model.WorkoutLog
 
 interface WorkoutRepository {
-    suspend fun getAlltWorkoutsIdByRoutine(id: String): List<String>
+    suspend fun getAlltWorkoutsIdByRoutine(id: Long): List<Long>
 
-    suspend fun getWorkoutById(id: String): Workout
+    suspend fun getWorkoutById(id: Long): Workout
 
-    suspend fun getLastWorkoutLogInRoutine(routineId: String): String?
-    suspend fun countAllWorkoutLogs(routineId: String): Int
-    suspend fun getLastWorkoutLogWorkout(workoutId: String): Workout?
-    suspend fun saveWorkout(routineId: String, workoutLog: WorkoutLog)
+    suspend fun getLastWorkoutLogInRoutine(routineId: Long): Long?
+    suspend fun countAllWorkoutLogs(routineId: Long): Int
+    suspend fun getLastWorkoutLogWorkout(workoutId: Long): Workout?
+    suspend fun saveWorkout(routineId: Long, workoutLog: WorkoutLog)
 
 }

@@ -38,7 +38,7 @@ fun WorkoutSetEntity.toDomain(): WorkoutSet {
     )
 }
 
-fun Workout.toEntity(routineId: String): WorkoutEntity {
+fun Workout.toEntity(routineId: Long): WorkoutEntity {
     return WorkoutEntity(
         workoutId = id,
         name = name,
@@ -47,7 +47,7 @@ fun Workout.toEntity(routineId: String): WorkoutEntity {
     )
 }
 
-fun Exercise.toEntity(workoutId: String): ExerciseEntity {
+fun Exercise.toEntity(workoutId: Long): ExerciseEntity {
     return ExerciseEntity(
         exerciseId = id,
         name = name,
@@ -64,12 +64,12 @@ fun WorkoutSet.toEntity(exerciseId: Long): WorkoutSetEntity {
     )
 }
 
-fun WorkoutLog.toEntity(routineId: String): WorkoutLogEntity {
+fun WorkoutLog.toEntity(routineId: Long): WorkoutLogEntity {
     return WorkoutLogEntity(
         workoutLogId = this.id,
         bodyWeight = this.bodyWeight,
         date = this.date.toTimeStamp(),
-        workoutId = this.workout.id,
+        workoutId = this.workout.id!!,
         routineId = routineId
     )
 }

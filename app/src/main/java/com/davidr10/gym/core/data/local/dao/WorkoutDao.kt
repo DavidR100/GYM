@@ -16,10 +16,11 @@ interface WorkoutDao {
 
     @Transaction
     @Query("Select * From WorkoutEntity WHERE workoutId = :routineId")
-    suspend fun getWorkoutById(routineId: String): WorkoutWithExercises
+    suspend fun getWorkoutById(routineId: Long): WorkoutWithExercises
 
     @Query("Select workoutId From WorkoutEntity WHERE routineId = :routineId ORDER BY creationTime ASC")
-    suspend fun getWorkoutsByRoutineId(routineId: String): List<String>
+    suspend fun getWorkoutsByRoutineId(routineId: Long): List<Long>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWorkout(workoutEntity: WorkoutEntity)
+    suspend fun insertWorkout(workoutEntity: WorkoutEntity): Long
 }

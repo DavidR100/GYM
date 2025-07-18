@@ -9,7 +9,7 @@ import java.util.UUID
 object FakeDataGenerator {
     fun createRoutine(): Routine {
         return Routine(
-            id = UUID.randomUUID().toString(),
+            id = null,
             name = "Full Body Workout",
             workouts = listOf(createWorkoutA(), createWorkoutB())
         )
@@ -17,7 +17,7 @@ object FakeDataGenerator {
 
     fun createWorkoutA(): Workout {
         return Workout(
-            id = UUID.randomUUID().toString(),
+            id = null,
             name = "Workout A",
             createExercisesA()
         )
@@ -25,7 +25,7 @@ object FakeDataGenerator {
 
     fun createWorkoutB(): Workout {
         return Workout(
-            id = UUID.randomUUID().toString(),
+            id = null,
             name = "Workout B",
             createExercisesB()
         )

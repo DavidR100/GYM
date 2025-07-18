@@ -26,11 +26,11 @@ class HomeRepositoryImpl(
     }
 
     override suspend fun insertRoutine(routine: Routine) {
-        routineDao.insertRoutine(routine = routine.toEntity())
+        val routineId = routineDao.insertRoutine(routine = routine.toEntity())
         routine.workouts.forEach { workout ->
-            workoutDao.insertWorkout(workout.toEntity(routine.id))
+           val workoutId = workoutDao.insertWorkout(workout.toEntity(routineId))
             workout.exercises.forEach { exercise ->
-                val exerciseId = exerciseDao.insertExercise(exercise.toEntity(workout.id))
+                val exerciseId = exerciseDao.insertExercise(exercise.toEntity(workoutId))
                 exercise.sets.forEach { set ->
                     workoutSetDao.insertWorkoutSet(set.toEntity(exerciseId))
                 }

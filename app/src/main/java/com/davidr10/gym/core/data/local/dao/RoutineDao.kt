@@ -18,5 +18,5 @@ interface RoutineDao {
     fun getAllRoutines(): Flow<List<RoutineWithWorkouts>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRoutine(routine: RoutineEntity)
+    suspend fun insertRoutine(routine: RoutineEntity): Long
 }

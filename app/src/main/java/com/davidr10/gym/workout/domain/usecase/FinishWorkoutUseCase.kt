@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 import java.util.UUID
 
 class FinishWorkoutUseCase(private val repository: WorkoutRepository) {
-    suspend operator fun invoke(routineId: String, workoutLog: WorkoutLog) {
+    suspend operator fun invoke(routineId: Long, workoutLog: WorkoutLog) {
           repository.saveWorkout(routineId, workoutLog)
     }
 }

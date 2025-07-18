@@ -17,21 +17,21 @@ import kotlinx.coroutines.flow.Flow
 interface WorkoutLogDao {
 
     @Query("Select * From WorkoutLogEntity WHERE workoutLogId = :workoutLogId")
-    suspend fun getWorkoutLogById(workoutLogId: String): WorkoutLogEntity
+    suspend fun getWorkoutLogById(workoutLogId: Long): WorkoutLogEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun createWorkoutLog(entity: WorkoutLogEntity)
+    suspend fun createWorkoutLog(entity: WorkoutLogEntity): Long
 
     @Query("Select * From WorkoutLogEntity WHERE routineId = :id ORDER BY date DESC LIMIT 1")
-    suspend fun getLastWorkoutLogInRoutine(id: String): WorkoutLogEntity?
+    suspend fun getLastWorkoutLogInRoutine(id: Long): WorkoutLogEntity?
 
     @Transaction
     @Query("Select * From WorkoutLogEntity WHERE routineId = :id ORDER BY date DESC LIMIT 1")
-    suspend fun getLastWorkout(id: String): WorkoutLogWithWorkout?
+    suspend fun getLastWorkout(id: Long): WorkoutLogWithWorkout?
 
     @Delete
     suspend fun deleteWorkoutLogById(entity: WorkoutLogEntity)
 
     @Query("Select Count(workoutLogId) From WorkoutLogEntity WHERE routineId = :id")
-    suspend fun countAllWorkoutLogs(id: String): Int
+    suspend fun countAllWorkoutLogs(id: Long): Int
 }
