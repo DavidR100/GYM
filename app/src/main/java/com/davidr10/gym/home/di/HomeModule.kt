@@ -7,6 +7,7 @@ import com.davidr10.gym.core.data.local.dao.WorkoutLogDao
 import com.davidr10.gym.core.data.local.dao.WorkoutSetDao
 import com.davidr10.gym.home.data.repository.HomeRepositoryImpl
 import com.davidr10.gym.home.domain.repository.HomeRepository
+import com.davidr10.gym.home.domain.usecase.CalculateMedianBodyWeightUseCase
 import com.davidr10.gym.home.domain.usecase.GetRoutinesUseCase
 import com.davidr10.gym.home.domain.usecase.InsertRoutinesUseCase
 import dagger.Module
@@ -28,7 +29,7 @@ object HomeModule {
         exerciseDao: ExerciseDao,
         workoutLogDao: WorkoutLogDao
     ): HomeRepository {
-        return HomeRepositoryImpl(routineDao,workoutDao, exerciseDao, workoutSetDao)
+        return HomeRepositoryImpl(routineDao,workoutDao, exerciseDao, workoutSetDao, workoutLogDao)
     }
     @Provides
     @Singleton
@@ -39,5 +40,10 @@ object HomeModule {
     @Singleton
     fun provideInsertRoutine(repository: HomeRepository): InsertRoutinesUseCase {
         return InsertRoutinesUseCase(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideCalculateMedianBodyWeight(repository: HomeRepository): CalculateMedianBodyWeightUseCase {
+        return CalculateMedianBodyWeightUseCase(repository)
     }
 }

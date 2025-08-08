@@ -12,6 +12,7 @@ import com.davidr10.gym.core.data.local.entities.WorkoutLogEntity
 import com.davidr10.gym.core.data.local.entities.relation.WorkoutLogWithWorkout
 import com.davidr10.gym.core.domain.model.Workout
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 @Dao
 interface WorkoutLogDao {
@@ -34,4 +35,7 @@ interface WorkoutLogDao {
 
     @Query("Select Count(workoutLogId) From WorkoutLogEntity WHERE routineId = :id")
     suspend fun countAllWorkoutLogs(id: Long): Int
+
+    @Query("Select * From WorkoutLogEntity WHERE date BETWEEN :lastWeek AND :today")
+    suspend fun getLastWeekWorkoutLogs(today: Long, lastWeek: Long): List<WorkoutLogEntity>
 }

@@ -9,6 +9,7 @@ import com.davidr10.gym.core.domain.model.Exercise
 import com.davidr10.gym.core.domain.model.Routine
 import com.davidr10.gym.core.domain.model.Workout
 import com.davidr10.gym.core.domain.model.WorkoutSet
+import com.davidr10.gym.home.domain.usecase.CalculateMedianBodyWeightUseCase
 import com.davidr10.gym.home.domain.usecase.GetRoutinesUseCase
 import com.davidr10.gym.home.domain.usecase.InsertRoutinesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getRoutinesUseCase: GetRoutinesUseCase,
-    private val insertRoutinesUseCase: InsertRoutinesUseCase
+    private val insertRoutinesUseCase: InsertRoutinesUseCase,
+    private val getMedianBodyWeightUseCase: CalculateMedianBodyWeightUseCase
 ) : ViewModel() {
     var state by mutableStateOf(HomeState())
         private set
@@ -34,6 +36,12 @@ class HomeViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
+            val weight = getMedianBodyWeightUseCase()
+            println(weight)
+            println()
+        }
+
+       /* viewModelScope.launch {
             try {
                 insertRoutinesUseCase(FakeDataGenerator.createRoutine())
             } catch (e: Exception) {
@@ -41,7 +49,7 @@ class HomeViewModel @Inject constructor(
                 println()
             }
             println()
-        }
+        }*/
 
 
     }
