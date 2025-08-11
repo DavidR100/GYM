@@ -10,4 +10,13 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val Background = Color(0xFF181A20)
+val Background = Color(0xFFFFFFFF)
+
+val WeightText = Color(0xFF9795A4)
+
+val TextBlack = Color(0xFF110F21)
+val TextDescription = Color(0xFF9795A3)
+
+val MainBlue = Color(0xFF3F8CFF)
+
+val BlueBackground = Color(0xFFF4F9FD)

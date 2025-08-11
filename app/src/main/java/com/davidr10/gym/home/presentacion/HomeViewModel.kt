@@ -37,19 +37,18 @@ class HomeViewModel @Inject constructor(
 
         viewModelScope.launch {
             val weight = getMedianBodyWeightUseCase()
-            println(weight)
-            println()
+            state = state.copy(bodyWeiht = 83.0)
         }
 
-       /* viewModelScope.launch {
-            try {
-                insertRoutinesUseCase(FakeDataGenerator.createRoutine())
-            } catch (e: Exception) {
-                println(e)
-                println()
-            }
-            println()
-        }*/
+        /* viewModelScope.launch {
+             try {
+                 insertRoutinesUseCase(FakeDataGenerator.createRoutine())
+             } catch (e: Exception) {
+                 println(e)
+                 println()
+             }
+             println()
+         }*/
 
 
     }

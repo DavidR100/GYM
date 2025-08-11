@@ -2,8 +2,11 @@ package com.davidr10.gym.home.presentacion
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +32,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.davidr10.gym.R
+import com.davidr10.gym.home.presentacion.composable.HomeRoutine
+import com.davidr10.gym.home.presentacion.composable.HomeWeight
+import com.davidr10.gym.ui.theme.MainBlue
+import com.davidr10.gym.ui.theme.TextBlack
 
 @Composable
 fun HomeScreen(
@@ -36,49 +44,53 @@ fun HomeScreen(
 ) {
     val state = viewModel.state
 
-    LazyColumn(modifier = Modifier
-        .fillMaxSize()
-        .padding(horizontal = 20.dp),
-        contentPadding = PaddingValues(vertical = 20.dp)
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentPadding = PaddingValues(20.dp)
     ) {
-        val appendable = buildAnnotatedString {
-            append("Hello")
-            append(" ")
-            withStyle(style = SpanStyle(color = Color.Yellow)) {
-                append("David")
+        item {
+            state.bodyWeiht?.let {
+                Column {
+                    Text(
+                        text = "Weekly Summary",
+                        color = TextBlack,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 16.sp
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    HomeWeight(it, modifier = Modifier.fillMaxWidth())
+                    Spacer(modifier = Modifier.height(18.dp))
+                }
             }
+
         }
         item {
-            Text(text = appendable)
-            Text(text = "Let´s start you day", fontSize = 24.sp, fontWeight = FontWeight.SemiBold)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Workout Plans",
+                    color = TextBlack,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 16.sp
+                )
+                TextButton(onClick = {}) {
+                    Text(
+                        text = "See all",
+                        color = MainBlue,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 12.sp
+                    )
+                }
+            }
         }
-
-        item { Spacer(modifier = Modifier.height(40.dp)) }
-        item { Text(text = "Workouts", fontWeight = FontWeight.SemiBold, fontSize = 16.sp) }
-        item { Spacer(modifier = Modifier.height(24.dp)) }
+        item { Spacer(modifier = Modifier.height(12.dp)) }
 
         items(state.routine) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .clickable { onRoutingClick(it.id!!) }
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.workout_background),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.Crop
-                )
-                Text(
-                    text = it.name,
-                    modifier = Modifier.align(alignment = Alignment.BottomStart).padding(start = 16.dp, bottom = 10.dp),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                    color = Color.White
-                )
-            }
+            HomeRoutine(it, modifier = Modifier.fillMaxWidth())
         }
     }
 }

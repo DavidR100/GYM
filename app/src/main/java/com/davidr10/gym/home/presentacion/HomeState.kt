@@ -8,5 +8,6 @@ import com.davidr10.gym.core.domain.model.WorkoutSet
 import java.util.UUID
 
 data class HomeState(
-    val routine: List<Routine> = listOf()
+    val routine: List<Routine> = listOf(),
+    val bodyWeiht: Double? = null
 )
