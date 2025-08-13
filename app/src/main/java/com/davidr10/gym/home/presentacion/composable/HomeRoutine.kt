@@ -3,6 +3,7 @@ package com.davidr10.gym.home.presentacion.composable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,7 +34,7 @@ import com.davidr10.gym.ui.theme.TextBlack
 import com.davidr10.gym.ui.theme.TextDescription
 
 @Composable
-fun HomeRoutine(routine: Routine, modifier: Modifier = Modifier) {
+fun HomeRoutine(routine: Routine, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(10.dp))
@@ -43,6 +44,7 @@ fun HomeRoutine(routine: Routine, modifier: Modifier = Modifier) {
                 color = MainBlue.copy(alpha = .6f),
                 shape = RoundedCornerShape(10.dp)
             )
+            .clickable { onClick() }
             .padding(vertical = 14.dp, horizontal = 16.dp), contentAlignment = Alignment.Center
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -61,7 +63,7 @@ fun HomeRoutine(routine: Routine, modifier: Modifier = Modifier) {
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Medium,
                     color = TextDescription,
-                    maxLines = 4,
+                    maxLines = 3,
                     lineHeight = 18.sp,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -89,5 +91,7 @@ fun HomeRoutinePreview() {
                 name = "Full Strength",
                 listOf()
             ), modifier = Modifier.fillMaxWidth()
-    )
+    ) {
+
+    }
 }

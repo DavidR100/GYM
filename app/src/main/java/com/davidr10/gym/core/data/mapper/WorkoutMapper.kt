@@ -32,7 +32,7 @@ fun ExerciseEntity.toDomain(sets: List<WorkoutSet>): Exercise {
 
 fun WorkoutSetEntity.toDomain(): WorkoutSet {
     return WorkoutSet(
-        id = workuotSetId!!,
+        id = workuotSetId,
         weight = weight,
         repetitions = repetitions
     )
@@ -40,7 +40,7 @@ fun WorkoutSetEntity.toDomain(): WorkoutSet {
 
 fun Workout.toEntity(routineId: Long): WorkoutEntity {
     return WorkoutEntity(
-        workoutId = id,
+        workoutId = id ?: 0,
         name = name,
         routineId = routineId,
         creationTime = LocalDateTime.now().toZonedDateTime().toTimeStamp()
@@ -49,7 +49,7 @@ fun Workout.toEntity(routineId: Long): WorkoutEntity {
 
 fun Exercise.toEntity(workoutId: Long): ExerciseEntity {
     return ExerciseEntity(
-        exerciseId = id,
+        exerciseId = id ?: 0,
         name = name,
         workoutId = workoutId
     )
@@ -57,7 +57,7 @@ fun Exercise.toEntity(workoutId: Long): ExerciseEntity {
 
 fun WorkoutSet.toEntity(exerciseId: Long): WorkoutSetEntity {
     return WorkoutSetEntity(
-        workuotSetId = id,
+        workuotSetId = id ?: 0,
         weight = weight,
         repetitions = repetitions,
         exerciseId = exerciseId
@@ -66,7 +66,7 @@ fun WorkoutSet.toEntity(exerciseId: Long): WorkoutSetEntity {
 
 fun WorkoutLog.toEntity(routineId: Long): WorkoutLogEntity {
     return WorkoutLogEntity(
-        workoutLogId = this.id,
+        workoutLogId = this.id ?: 0,
         bodyWeight = this.bodyWeight,
         date = this.date.toTimeStamp(),
         workoutId = this.workout.id!!,

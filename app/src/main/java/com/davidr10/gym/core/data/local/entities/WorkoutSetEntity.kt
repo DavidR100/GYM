@@ -9,9 +9,8 @@ import com.davidr10.gym.core.domain.model.Workout
 @Entity
 data class WorkoutSetEntity(
     @PrimaryKey(autoGenerate = true)
-    val workuotSetId: Long? = null,
+    val workuotSetId: Long = 0,
     val weight: Double,
     val repetitions: Int,
     val exerciseId: Long
-    // TODO: Add min and max reps, para automatic progressive overload
 )

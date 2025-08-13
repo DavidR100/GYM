@@ -32,7 +32,7 @@ fun HomeTimer(
             tint = MainBlue
         )
         Spacer(modifier = Modifier.width(6.dp))
-        Text(text = "60 Mins", color = TextBlack, fontWeight = FontWeight.Medium, fontSize = 14.sp)
+        Text(text = "$time Mins", color = TextBlack, fontWeight = FontWeight.Medium, fontSize = 14.sp)
     }
 
 }

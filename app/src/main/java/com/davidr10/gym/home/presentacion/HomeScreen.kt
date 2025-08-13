@@ -90,7 +90,9 @@ fun HomeScreen(
         item { Spacer(modifier = Modifier.height(12.dp)) }
 
         items(state.routine) {
-            HomeRoutine(it, modifier = Modifier.fillMaxWidth())
+            HomeRoutine(it, modifier = Modifier.fillMaxWidth()) {
+                onRoutingClick(it.id!!)
+            }
         }
     }
 }

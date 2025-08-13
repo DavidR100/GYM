@@ -22,7 +22,7 @@ fun RoutineWithWorkouts.toDomain(): Routine {
 
 fun Routine.toEntity(): RoutineEntity {
     return RoutineEntity(
-        routineId = id,
+        routineId = id ?: 0,
         name = name
     )
 }
